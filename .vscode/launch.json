@@ -1,0 +1,58 @@
+{
+    "version": "0.1.0",
+    // ローカルにあるファイルをデバッグ
+    "configurations": [
+        {
+            // デバッグ設定の名称
+            "name": "Launch local file",
+            // デバッグ種別を指定（chrome/node/monoなど）
+            "type": "chrome",
+            // lanunchまたはattachを指定
+            "request": "launch",
+            // 読み込むHTMLファイルを指定（プロジェクトからのパスを指定）
+            "file": "${workspaceRoot}/index.html"
+        },
+        // Webサーバー上にあるファイルをデバッグ
+        {
+            // デバッグ設定の名称
+            "name": "Launch remote website with sourcemaps",
+            // デバッグ種別を指定（chrome/node/monoなど）
+            "type": "chrome",
+            // lanunchまたはattachを指定
+            "request": "launch",
+            // Webサーバー上にあるデバッグ対象のURLを指定
+            "url": "http://127.0.0.1:8086/index.html",
+            // マッピングするローカルファイルが配置されているディレクトリを指定
+            "webRoot": "${workspaceRoot}/",
+            // ソースマップの有効・無効の指定（true/false）
+            "sourceMaps": true
+        },
+        {
+            "name": "Launch Chrome against localhost, with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "sourceMaps": true,
+            "url": "http://localhost:8080/",
+            "webRoot": "${workspaceRoot}", // ${workspaceRoot}/appではない
+            // Windowsの場合のみ以下設定が必要
+            "sourceMapPathOverrides": {
+                "webpack:///./C:/myproject/*": "${webRoot}/*" // 動く
+                // "webpack:///./*": "*"  // 動かない
+            }
+        },
+        {
+            "name": "Attach to Chrome, with sourcemaps",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222, // Chrome起動時のremote-debugging-portを指定
+            "sourceMaps": true,
+            "url": "http://localhost:8080/",
+            "webRoot": "${workspaceRoot}", // ${workspaceRoot}/appではない
+            // Windowsの場合のみ以下設定が必要
+            "sourceMapPathOverrides": {
+                "webpack:///./C:/myproject/*": "${webRoot}/*" // 動く
+                // "webpack:///./*": "*"  // 動かない
+            }
+        }
+    ]
+}

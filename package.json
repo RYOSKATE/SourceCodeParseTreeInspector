@@ -1,0 +1,22 @@
+{
+  "name": "jplay-visualizer-c",
+  "version": "0.0.0",
+  "description": "JPlayVisualizerC",
+  "main": "app.js",
+  "dependencies": {
+    "ace-min-noconflict": "^1.1.9",
+    "antlr4": "^4.7.1",
+    "eslint": "^4.15.0",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.10.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "debug": "webpack-dev-server -d --progress --colors"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
