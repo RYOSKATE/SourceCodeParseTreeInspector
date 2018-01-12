@@ -1,6 +1,6 @@
 ﻿// webpack.config.js
 module.exports = {
-    entry: './docs/js/app.js',
+    entry: './src/js/app.js',
     output: {
         filename: './docs/bundle.js'
     },

@@ -1,7 +1,24 @@
 'use strict';
 {
+    // class Person {
+    //     constructor(name) {
+    //         this.name = name;
+    //     }
+    // }
+    // class Friend extends Person {
+    //     constructor(name) {
+    //         super(name);
+    //     }
+    //     callName() {
+    //         alert(this.name);
+    //     }
+    // }
 
-    var id = 0;
+    // const friend = new Friend('Ryo');
+
+    // friend.callName();
+
+    let id = 0;
     function dfs(node, parser, tree, _parent) {
         if (`ruleIndex` in node) {
             if (0 <= node.ruleIndex) {
