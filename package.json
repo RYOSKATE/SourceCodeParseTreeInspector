@@ -3,14 +3,18 @@
   "version": "0.0.0",
   "description": "JPlayVisualizerC",
   "main": "app.js",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "ace-min-noconflict": "^1.1.9",
     "antlr4": "^4.7.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^4.15.0",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.10.1"
+    "webpack-dev-server": "^2.10.1",
+    "webpack-stream": "^4.0.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
