@@ -4,7 +4,6 @@
 
 ### Setup environment
 
- 
 * Install node packages
 
  ```
@@ -20,6 +19,15 @@ to update bundle.js for browser by webpack.
 
 * Open the index.html on your browser
 
+## Development
 
-### demopage:
+### How to use your own syntax file
+
+* Generate
+
+ ```
+ antlr4 -Dlanguage=JavaScript -visitor Grammar.g4
+ ```
+
+### demo page:
 [https://ryoskate.github.io/JPlayVisualizerC/](https://ryoskate.github.io/JPlayVisualizerC/)
