@@ -47,9 +47,11 @@
 
         const CMapper = require('./CMapper');
         const mapper = new CMapper.CMapper(true);
-        const [tree, parser] = mapper.parse(input);
+        const [tree, parser] = mapper.getRawTree(input);
         console.log("Parsed: " + tree);
         updateTree(tree, parser);
+        const node = mapper.parse(input);
+        console.log("node: " + node);
     }
     function createEditor(idName, canWrite, initText) {
         require('ace-min-noconflict');
