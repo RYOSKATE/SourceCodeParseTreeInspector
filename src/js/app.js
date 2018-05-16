@@ -1,23 +1,5 @@
 'use strict';
 {
-    // class Person {
-    //     constructor(name) {
-    //         this.name = name;
-    //     }
-    // }
-    // class Friend extends Person {
-    //     constructor(name) {
-    //         super(name);
-    //     }
-    //     callName() {
-    //         alert(this.name);
-    //     }
-    // }
-
-    // const friend = new Friend('Ryo');
-
-    // friend.callName();
-
     let id = 0;
     function dfs(node, parser, tree, _parent) {
         if (`ruleIndex` in node) {
@@ -63,16 +45,9 @@
         //const input = document.getElementById("code").value;
         const input = editor.getValue();
 
-        const antlr4 = require('antlr4');
-        const CLexer = require('./CLexer');
-        const CParser = require('./CParser');
-
-        const chars = new antlr4.InputStream(input);
-        const lexer = new CLexer.CLexer(chars);
-        const tokens = new antlr4.CommonTokenStream(lexer);
-        const parser = new CParser.CParser(tokens);
-        parser.buildParseTrees = true;
-        const tree = parser.compilationUnit();
+        const CMapper = require('./CMapper');
+        const mapper = new CMapper.CMapper(true);
+        const [tree, parser] = mapper.parse(input);
         console.log("Parsed: " + tree);
         updateTree(tree, parser);
     }
