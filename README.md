@@ -1,4 +1,4 @@
-# JPlayVisualizerC  <a href="http://doge.mit-license.org"><img src="http://img.shields.io/:license-mit-blue.svg"></a>
+# SourceCodeParseTreeInspector  <a href="http://doge.mit-license.org"><img src="http://img.shields.io/:license-mit-blue.svg"></a>
 
 ## Usage
 
@@ -22,4 +22,4 @@ to update bundle.js for browser by webpack.
 
 
 ### demopage:
-[https://ryoskate.github.io/JPlayVisualizerC/](https://ryoskate.github.io/JPlayVisualizerC/)
+[https://ryoskate.github.io/SourceCodeParseTreeInspector/](https://ryoskate.github.io/SourceCodeParseTreeInspector/)
