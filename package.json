@@ -1,7 +1,7 @@
 {
-  "name": "jplay-visualizer-c",
+  "name": "source-code-parse-tree-inspector",
   "version": "0.0.0",
-  "description": "JPlayVisualizerC",
+  "description": "SourceCodeParseTreeInspector",
   "main": "app.js",
   "dependencies": {},
   "devDependencies": {
