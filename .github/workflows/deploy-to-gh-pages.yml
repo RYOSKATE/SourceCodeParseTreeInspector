@@ -1,0 +1,78 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Read Node.js version from package.json
+        run: echo ::set-output name=nodeVersion::$(node -p "require('./package.json').engines.node")
+        id: engines
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ steps.engines.outputs.nodeVersion }}
+
+      - name: cache node_modules
+        id: node_modules_cache_id
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+          key: node-v${{ steps.engines.outputs.nodeVersion }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+
+      - name: Install 🔧
+        run: yarn install --frozen-lockfile --ignore-optional
+
+      - name: Build 🔧
+        run: yarn build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: docs # The folder the action should deploy.
+
+      - if: ${{ success() }}
+        run: echo "STATUS=成功" >> $GITHUB_ENV
+      - if: ${{ failure() }}
+        run: echo "STATUS=失敗" >> $GITHUB_ENV
+
+      - name: Slack Notification
+        if: ${{ always() }}
+        uses: slackapi/slack-github-action@v1.19.0
+        with:
+          # 以下のように #チャンネル名も動作はしますが
+          # チャンネル名が変更されると動かなくなるので
+          # 実運用では C1QAUTY0M のような ID を使ってください
+          channel-id: "#github"
+          payload: |
+            {
+              "text": "デプロイ${{ env.STATUS }}: https://ryoskate.jp/chat-palette-generator",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "デプロイ${{ env.STATUS }}: https://ryoskate.jp/chat-palette-generator"
+                  }
+                },
+                {
+                  "type": "context",
+                  "elements": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "アクション: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
