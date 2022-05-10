@@ -1,24 +1,37 @@
 {
-  "extends": ["config:base"],
+  "extends": [
+    "config:base",
+    ":automergeMinor",
+    ":automergePr",
+    ":maintainLockFilesWeekly",
+    ":prImmediately",
+    ":rebaseStalePrs",
+    ":semanticCommits",
+    ":prHourlyLimitNone",
+    ":enableVulnerabilityAlertsWithLabel(security)",
+    "group:linters",
+    "group:test",
+    "group:allNonMajor"
+  ],
+  "baseBranches": [
+    "master"
+  ],
+  "dependencyDashboardAutoclose": true,
+  "packageRules": [
+    {
+      "matchPackagePatterns": [
+        "yarn"
+      ],
+      "ignoreUnstable": false
+    }
+  ],
+  "timezone": "Asia/Tokyo",
   "rebaseStalePrs": true,
   "prCreation": "not-pending",
-  "dependencies": {
-    "automerge": false,
-    "major": {
-      "automerge": false
-    },
-    "minor": {
-      "automerge": false
-    }
-  },
-  "devDependencies": {
-    "automerge": true,
-    "major": {
-      "automerge": false
-    }
-  },
-  "automergeType": "branch-push",
-  "minor": {
-    "groupName": "all dependencies"
-  }
+  "schedule": "before 10am on Saturday",
+  "labels": [
+    "renovate"
+  ],
+  "separateMultipleMajor": true,
+  "ignoreDeps": []
 }
